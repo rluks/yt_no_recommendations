@@ -10,9 +10,11 @@
 
 var items;
 var removedText = "Video suggestions removed by 'yt no recommendations' (Tampermonkey script)";
+var checkedTimes = 0;
 
 function removeSuggestions(){
 
+    //console.log("removing items innerhtml:" + items.innerHTML);
     items.innerHTML = removedText;
 
     var continuations = document.getElementById("continuations");
@@ -20,6 +22,9 @@ function removeSuggestions(){
 }
 
 function checkSuggestions(){
+
+    checkedTimes++;
+    console.log("yt no rec count:" + checkedTimes);
 
     items  = document.querySelector("#related").querySelector("#items");
 
@@ -30,6 +35,9 @@ function checkSuggestions(){
     if(items.innerHTML !== removedText){
         removeSuggestions();
         setTimeout(checkSuggestions, 1000);
+    }else{
+        if(checkedTimes < 10)
+            setTimeout(checkSuggestions, 5000);
     }
 
 
@@ -38,7 +46,12 @@ function checkSuggestions(){
 
 (function() {
     'use strict';
-    //setInterval(checkSuggestions, 1000);
+    console.log("yt no rec. function run");
     setTimeout(checkSuggestions, 1000);
+    
+    document.addEventListener('visibilitychange', function(){
+        console.log("yt no rec. vis change");
+        setTimeout(checkSuggestions, 1000);
+    });
 
 })();
