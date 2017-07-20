@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         yt no recommendations
 // @namespace    http://tampermonkey.net/
-// @version      0.3
+// @version      0.4
 // @description  Removes list of suggested videos from youtube
 // @author       rluks
 // @match        https://www.youtube.com/*
@@ -9,12 +9,11 @@
 // ==/UserScript==
 
 var items;
-var removedText = "Video suggestions removed by 'yt no recommendations' (Tampermonkey script)";
+var removedText = "Video suggestions removed by 'yt no recommendations' (Tampermonkey/Greasemonkey script)";
 var checkedTimes = 0;
 
 function removeSuggestions(){
 
-    //console.log("removing items innerhtml:" + items.innerHTML);
     items.innerHTML = removedText;
 
     var continuations = document.getElementById("continuations");
@@ -24,7 +23,6 @@ function removeSuggestions(){
 function checkSuggestions(){
 
     checkedTimes++;
-    //console.log("yt no rec count:" + checkedTimes);
 
     items  = document.querySelector("#related").querySelector("#items");
 
@@ -46,11 +44,9 @@ function checkSuggestions(){
 
 (function() {
     'use strict';
-    //console.log("yt no rec. function run");
     setTimeout(checkSuggestions, 1000);
     
     document.addEventListener('visibilitychange', function(){
-        //console.log("yt no rec. vis change");
         setTimeout(checkSuggestions, 1000);
     });
 
