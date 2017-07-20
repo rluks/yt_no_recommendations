@@ -24,7 +24,7 @@ function removeSuggestions(){
 function checkSuggestions(){
 
     checkedTimes++;
-    console.log("yt no rec count:" + checkedTimes);
+    //console.log("yt no rec count:" + checkedTimes);
 
     items  = document.querySelector("#related").querySelector("#items");
 
@@ -46,11 +46,11 @@ function checkSuggestions(){
 
 (function() {
     'use strict';
-    console.log("yt no rec. function run");
+    //console.log("yt no rec. function run");
     setTimeout(checkSuggestions, 1000);
     
     document.addEventListener('visibilitychange', function(){
-        console.log("yt no rec. vis change");
+        //console.log("yt no rec. vis change");
         setTimeout(checkSuggestions, 1000);
     });
 
