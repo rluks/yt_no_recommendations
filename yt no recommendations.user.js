@@ -16,19 +16,21 @@ function removeSuggestions(){
 
     items.innerHTML = removedText;
 
-    var continuations = document.getElementById("continuations");
-    continuations.innerHTML = "";
+    //var continuations = document.getElementById("continuations");
+    //continuations.innerHTML = "";
 }
 
 function checkSuggestions(){
 
     checkedTimes++;
-
-    items  = document.querySelector("#related").querySelector("#items");
-
-    if(items.className !== "style-scope ytd-watch-next-secondary-results-renderer"){
-        return;
-    }
+    
+    items = document.querySelector("#watch7-sidebar-contents");
+    
+    //older yt 
+    //items  = document.querySelector("#related").querySelector("#items");
+    //if(items.className !== "style-scope ytd-watch-next-secondary-results-renderer"){
+    //    return;
+    //}
 
     if(items.innerHTML !== removedText){
         removeSuggestions();
