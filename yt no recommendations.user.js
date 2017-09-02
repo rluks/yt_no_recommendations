@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         yt no recommendations
 // @namespace    http://tampermonkey.net/
-// @version      0.4
+// @version      0.4.1
 // @description  Removes list of suggested videos from youtube
 // @author       rluks
 // @match        https://www.youtube.com/*
@@ -13,24 +13,14 @@ var removedText = "Video suggestions removed by 'yt no recommendations' (Tamperm
 var checkedTimes = 0;
 
 function removeSuggestions(){
-
     items.innerHTML = removedText;
-
-    //var continuations = document.getElementById("continuations");
-    //continuations.innerHTML = "";
 }
 
 function checkSuggestions(){
 
     checkedTimes++;
     
-    items = document.querySelector("#watch7-sidebar-contents");
-    
-    //older yt 
-    //items  = document.querySelector("#related").querySelector("#items");
-    //if(items.className !== "style-scope ytd-watch-next-secondary-results-renderer"){
-    //    return;
-    //}
+    items = document.querySelector("#related");
 
     if(items.innerHTML !== removedText){
         removeSuggestions();
